@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramSAP", "ProgramSAP\ProgramSAP.csproj", "{07DAA165-132F-407D-82F2-C51088208FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProgramSAP", "ProgramSAP\ProgramSAP.csproj", "{07DAA165-132F-407D-82F2-C51088208FAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgramSAP.DataAccess", "ProgramSAP.DataAccess\ProgramSAP.DataAccess.csproj", "{B63E9A5B-EC87-4435-A1B9-9A5259E2D089}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{07DAA165-132F-407D-82F2-C51088208FAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07DAA165-132F-407D-82F2-C51088208FAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07DAA165-132F-407D-82F2-C51088208FAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B63E9A5B-EC87-4435-A1B9-9A5259E2D089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B63E9A5B-EC87-4435-A1B9-9A5259E2D089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B63E9A5B-EC87-4435-A1B9-9A5259E2D089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B63E9A5B-EC87-4435-A1B9-9A5259E2D089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
