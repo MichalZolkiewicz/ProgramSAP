@@ -3,7 +3,6 @@ using ProgramSAP.ApplicationServices.API.Domain;
 using ProgramSAP.DataAccess.Repositories;
 using ProgramSAP.DataAccess.Entities;
 
-
 namespace ProgramSAP.ApplicationServices.API.Handlers;
 
 public class GetRequisitionsHandler : IRequestHandler<GetRequisitionsRequest, GetRequisitionsResponse>
