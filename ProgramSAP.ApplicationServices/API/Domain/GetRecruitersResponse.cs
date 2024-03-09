@@ -2,7 +2,7 @@
 
 namespace ProgramSAP.ApplicationServices.API.Domain;
 
-internal class GetRecruitersResponse : ResponseBase<Recruiter>
+public class GetRecruitersResponse : ResponseBase<List<Recruiter>>
 {
 
 }
