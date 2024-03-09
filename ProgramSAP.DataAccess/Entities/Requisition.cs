@@ -11,6 +11,10 @@ public class Requisition : EntityBase
     public int ManagerId { get; set; }
 
     public Manager Manager { get; set; }
+
+    public int CandidateId { get; set; }
+
+    public Candidate Candidate { get; set; }
     
     [Required]
     [MaxLength(250)]
