@@ -14,17 +14,17 @@ public class Repository<T> : IRepository<T> where T : EntityBase
         this.recruitingProgramContext = recruitingProgramContext;
         entities = recruitingProgramContext.Set<T>();
     }
-    public IEnumerable<T> GetAll()
+    public Task<List<T>> GetAll()
     {
-        return entities.AsEnumerable();
+        return entities.ToListAsync();
     } 
 
-    public T GetById(int id)
+    public Task<T> GetById(int id)
     {
-        return entities.SingleOrDefault(s => s.Id == id);
+        return entities.SingleOrDefaultAsync(s => s.Id == id);
     }
 
-    public void Insert(T entity)
+    public Task Insert(T entity)
     {
         if (entity == null) 
         {
@@ -32,16 +32,23 @@ public class Repository<T> : IRepository<T> where T : EntityBase
         }
 
         entities.Add(entity);
-        recruitingProgramContext.SaveChanges();
+        return recruitingProgramContext.SaveChangesAsync();
     }
 
-    public void Update(T entity)
+    public Task Update(T entity)
     {
-        throw new NotImplementedException();
+        if (entity == null)
+        {
+            throw new ArgumentNullException();
+        }
+
+        return recruitingProgramContext.SaveChangesAsync();
     }
 
-    public void Delete(int id)
+    public async Task Delete(int id)
     {
-        throw new NotImplementedException();
+        T entity = await entities.SingleOrDefaultAsync(x => x.Id == id);
+        entities.Remove(entity);
+        await recruitingProgramContext.SaveChangesAsync();
     }
 }
