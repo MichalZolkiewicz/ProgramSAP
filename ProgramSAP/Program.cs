@@ -4,6 +4,7 @@ using ProgramSAP.DataAccess;
 using ProgramSAP.DataAccess.Repositories;
 using ProgramSAP.ApplicationServices.API.Domain;
 using ProgramSAP.ApplicationServices.API.Mappings;
+using ProgramSAP.DataAccess.CQRS;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddMediatR(typeof(ResponseBase<>));
 builder.Services.AddAutoMapper(typeof(CandidatesProfile).Assembly);
+builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
+builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
