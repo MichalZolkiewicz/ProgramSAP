@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgramSAP.DataAccess;
 
@@ -10,9 +11,11 @@ using ProgramSAP.DataAccess;
 namespace ProgramSAP.DataAccess.Migrations
 {
     [DbContext(typeof(RecruitingProgramContext))]
-    partial class RecruitingProgramContextModelSnapshot : ModelSnapshot
+    [Migration("20240312223541_CandidatesAdded")]
+    partial class CandidatesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

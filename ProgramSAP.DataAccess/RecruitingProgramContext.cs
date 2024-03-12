@@ -16,4 +16,6 @@ public class RecruitingProgramContext : DbContext
     public DbSet<Sourcer> Sourcers { get; set; }
 
     public DbSet<Manager> Managers { get; set; }
+
+    public DbSet<Candidate> Candidates { get; set; }
 }
