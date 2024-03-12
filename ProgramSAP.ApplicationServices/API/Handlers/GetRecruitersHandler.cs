@@ -13,9 +13,9 @@ public class GetRecruitersHandler : IRequestHandler<GetRecruitersRequest, GetRec
     {
         this.recruiterRepository = recruiterRepository;
     }
-    public Task<GetRecruitersResponse> Handle(GetRecruitersRequest request, CancellationToken cancellationToken)
+    public async Task<GetRecruitersResponse> Handle(GetRecruitersRequest request, CancellationToken cancellationToken)
     {
-        var recruiters = recruiterRepository.GetAll();
+        var recruiters = await recruiterRepository.GetAll();
         var domainRecruiters = recruiters.Select(x => new Domain.Models.Recruiter
         {
             Id = x.Id,
@@ -28,6 +28,6 @@ public class GetRecruitersHandler : IRequestHandler<GetRecruitersRequest, GetRec
             Data = domainRecruiters.ToList()
         };
 
-        return Task.FromResult(response);
+        return response;
     }
 }

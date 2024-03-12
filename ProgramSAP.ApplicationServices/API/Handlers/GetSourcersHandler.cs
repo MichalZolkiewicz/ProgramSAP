@@ -13,9 +13,9 @@ public class GetSourcersHandler : IRequestHandler<GetSourcersRequest, GetSourcer
     {
         this.sourcerRepository = sourcerRepository;
     }
-    public Task<GetSourcersResponse> Handle(GetSourcersRequest request, CancellationToken cancellationToken)
+    public async Task<GetSourcersResponse> Handle(GetSourcersRequest request, CancellationToken cancellationToken)
     {
-        var sourcers = sourcerRepository.GetAll();
+        var sourcers = await sourcerRepository.GetAll();
         var domainSourcers = sourcers.Select(x => new Domain.Models.Sourcer
         {
             Id = x.Id,
@@ -28,6 +28,6 @@ public class GetSourcersHandler : IRequestHandler<GetSourcersRequest, GetSourcer
             Data = domainSourcers.ToList()
         };
 
-        return Task.FromResult(response);
+        return response;
     }
 }

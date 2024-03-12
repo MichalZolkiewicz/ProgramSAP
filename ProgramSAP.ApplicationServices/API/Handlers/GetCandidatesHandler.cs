@@ -16,15 +16,15 @@ public class GetCandidatesHandler : IRequestHandler<GetCandidatesRequest, GetCan
         this.candidateRepository = candidateRepository;
         this.mapper = mapper;
     }
-    public Task<GetCandidatesResponse> Handle(GetCandidatesRequest request, CancellationToken cancellationToken)
+    public async Task<GetCandidatesResponse> Handle(GetCandidatesRequest request, CancellationToken cancellationToken)
     {
-        var candidates = candidateRepository.GetAll();
+        var candidates = await candidateRepository.GetAll();
         var mappedCandidates = mapper.Map<List<Domain.Models.Candidate>>(candidates);
 
         var response = new GetCandidatesResponse()
         {
             Data = mappedCandidates
         };
-        return Task.FromResult(response);
+        return response;
     }
 }

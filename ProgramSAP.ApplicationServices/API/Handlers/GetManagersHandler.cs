@@ -13,9 +13,9 @@ public class GetManagersHandler : IRequestHandler<GetManagersRequest, GetManager
     {
         this.managerRepository = managerRepository;
     }
-    public Task<GetManagersResponse> Handle(GetManagersRequest request, CancellationToken cancellationToken)
+    public async Task<GetManagersResponse> Handle(GetManagersRequest request, CancellationToken cancellationToken)
     {
-        var managers = managerRepository.GetAll();
+        var managers = await managerRepository.GetAll();
         var domainManagers = managers.Select(x => new Domain.Models.Manager
         {
             Id = x.Id,
@@ -28,6 +28,6 @@ public class GetManagersHandler : IRequestHandler<GetManagersRequest, GetManager
             Data = domainManagers.ToList()
         };
 
-        return Task.FromResult(response);
+        return response;
     }
 }

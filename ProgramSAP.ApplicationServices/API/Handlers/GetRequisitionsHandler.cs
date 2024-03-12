@@ -13,9 +13,9 @@ public class GetRequisitionsHandler : IRequestHandler<GetRequisitionsRequest, Ge
     {
         this.requisitionRepository = requisitionRepository;
     }
-    public Task<GetRequisitionsResponse> Handle(GetRequisitionsRequest request, CancellationToken cancellationToken)
+    public async Task<GetRequisitionsResponse> Handle(GetRequisitionsRequest request, CancellationToken cancellationToken)
     {
-        var requisitions = this.requisitionRepository.GetAll();
+        var requisitions = await requisitionRepository.GetAll();
         var domainRequisitions = requisitions.Select(x => new Domain.Models.Requisition()
         {
             Id = x.Id,
@@ -26,6 +26,6 @@ public class GetRequisitionsHandler : IRequestHandler<GetRequisitionsRequest, Ge
         {
             Data = domainRequisitions.ToList()
         };
-        return Task.FromResult(response);
+        return response;
     }
 }
