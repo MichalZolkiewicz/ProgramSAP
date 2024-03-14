@@ -4,7 +4,7 @@ using ProgramSAP.ApplicationServices.API.Domain;
 using ProgramSAP.DataAccess.CQRS;
 using ProgramSAP.DataAccess.CQRS.Queries;
 
-namespace ProgramSAP.ApplicationServices.API.Handlers;
+namespace ProgramSAP.ApplicationServices.API.Handlers.Candidates;
 
 public class GetCandidatesHandler : IRequestHandler<GetCandidatesRequest, GetCandidatesResponse>
 {
@@ -19,7 +19,7 @@ public class GetCandidatesHandler : IRequestHandler<GetCandidatesRequest, GetCan
     public async Task<GetCandidatesResponse> Handle(GetCandidatesRequest request, CancellationToken cancellationToken)
     {
         var query = new GetCandidatesQuery();
-        var candidates = await this.queryExecutor.Execute(query);
+        var candidates = await queryExecutor.Execute(query);
         var mappedCandidates = mapper.Map<List<Domain.Models.Candidate>>(candidates);
 
         var response = new GetCandidatesResponse()

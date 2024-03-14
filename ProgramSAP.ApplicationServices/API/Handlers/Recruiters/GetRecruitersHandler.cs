@@ -3,7 +3,7 @@ using ProgramSAP.ApplicationServices.API.Domain;
 using ProgramSAP.DataAccess.Entities;
 using ProgramSAP.DataAccess.Repositories;
 
-namespace ProgramSAP.ApplicationServices.API.Handlers;
+namespace ProgramSAP.ApplicationServices.API.Handlers.Recruiters;
 
 public class GetRecruitersHandler : IRequestHandler<GetRecruitersRequest, GetRecruitersResponse>
 {
