@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using MediatR;
+using ProgramSAP.ApplicationServices.API.Domain.Candidate.Add;
+using ProgramSAP.DataAccess.CQRS;
+using ProgramSAP.DataAccess.CQRS.Commands;
 
-namespace ProgramSAP.ApplicationServices.API.Handlers.Candidates
+namespace ProgramSAP.ApplicationServices.API.Handlers.Candidates;
+
+public class AddCandidateHandler : IRequestHandler<AddCandidateRequest, AddCandidateRespone>
 {
-    internal class AddCandidateHandler
+    private readonly IMapper mapper;
+    private readonly ICommandExecutor commandExecutor;
+
+    public AddCandidateHandler(IMapper mapper, ICommandExecutor commandExecutor)
     {
+        this.mapper = mapper;
+        this.commandExecutor = commandExecutor;
+    }
+    public async Task<AddCandidateRespone> Handle(AddCandidateRequest request, CancellationToken cancellationToken)
+    {
+        var candidate = this.mapper.Map<DataAccess.Entities.Candidate>(request);
+        var command = new AddCandidateCommand() { Parameter = candidate };
+        var candidateFromDb = await this.commandExecutor.Execute(command);
+        return new AddCandidateRespone()
+        {
+            Data = this.mapper.Map<Domain.Candidate.Candidate>(candidateFromDb)
+        };
     }
 }
