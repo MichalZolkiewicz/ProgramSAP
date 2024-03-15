@@ -1,4 +1,4 @@
-﻿namespace ProgramSAP.ApplicationServices.API.Domain.Models;
+﻿namespace ProgramSAP.ApplicationServices.API.Domain.Sourcer;
 
 public class Sourcer
 {

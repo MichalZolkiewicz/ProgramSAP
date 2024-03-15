@@ -1,6 +1,6 @@
-﻿namespace ProgramSAP.ApplicationServices.API.Domain.Models;
+﻿namespace ProgramSAP.ApplicationServices.API.Domain.Manager;
 
-public class Recruiter
+public class Manager
 {
     public int Id { get; set; }
     public string Name { get; set; }

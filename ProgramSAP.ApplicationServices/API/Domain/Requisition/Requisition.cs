@@ -1,4 +1,4 @@
-﻿namespace ProgramSAP.ApplicationServices.API.Domain.Models;
+﻿namespace ProgramSAP.ApplicationServices.API.Domain.Requisition;
 
 public class Requisition
 {
