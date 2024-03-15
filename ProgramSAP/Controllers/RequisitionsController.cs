@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ProgramSAP.ApplicationServices.API.Domain;
+using ProgramSAP.ApplicationServices.API.Domain.Requisition.GetAll;
 
 namespace ProgramSAP.Controllers;
 
