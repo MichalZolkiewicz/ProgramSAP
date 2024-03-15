@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ProgramSAP.ApplicationServices.API.Domain;
+using ProgramSAP.ApplicationServices.API.Domain.Sourcer.GetAll;
 using ProgramSAP.DataAccess.Entities;
 using ProgramSAP.DataAccess.Repositories;
 
@@ -16,7 +16,7 @@ public class GetSourcersHandler : IRequestHandler<GetSourcersRequest, GetSourcer
     public async Task<GetSourcersResponse> Handle(GetSourcersRequest request, CancellationToken cancellationToken)
     {
         var sourcers = await sourcerRepository.GetAll();
-        var domainSourcers = sourcers.Select(x => new Domain.Models.Sourcer
+        var domainSourcers = sourcers.Select(x => new Domain.Sourcer.Sourcer
         {
             Id = x.Id,
             Name = x.Name,

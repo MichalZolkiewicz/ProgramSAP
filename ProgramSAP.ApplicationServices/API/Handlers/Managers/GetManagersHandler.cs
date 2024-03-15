@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ProgramSAP.ApplicationServices.API.Domain;
+using ProgramSAP.ApplicationServices.API.Domain.Manager.GetAll;
 using ProgramSAP.DataAccess.Entities;
 using ProgramSAP.DataAccess.Repositories;
 
@@ -16,7 +16,7 @@ public class GetManagersHandler : IRequestHandler<GetManagersRequest, GetManager
     public async Task<GetManagersResponse> Handle(GetManagersRequest request, CancellationToken cancellationToken)
     {
         var managers = await managerRepository.GetAll();
-        var domainManagers = managers.Select(x => new Domain.Models.Manager
+        var domainManagers = managers.Select(x => new Domain.Manager.Manager()
         {
             Id = x.Id,
             Name = x.Name,

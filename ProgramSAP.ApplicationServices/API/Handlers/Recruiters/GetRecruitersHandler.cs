@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ProgramSAP.ApplicationServices.API.Domain;
+using ProgramSAP.ApplicationServices.API.Domain.Recruiter.GetAll;
 using ProgramSAP.DataAccess.Entities;
 using ProgramSAP.DataAccess.Repositories;
 
@@ -16,7 +16,7 @@ public class GetRecruitersHandler : IRequestHandler<GetRecruitersRequest, GetRec
     public async Task<GetRecruitersResponse> Handle(GetRecruitersRequest request, CancellationToken cancellationToken)
     {
         var recruiters = await recruiterRepository.GetAll();
-        var domainRecruiters = recruiters.Select(x => new Domain.Models.Recruiter
+        var domainRecruiters = recruiters.Select(x => new Domain.Recruiter.Recruiter
         {
             Id = x.Id,
             Name = x.Name,

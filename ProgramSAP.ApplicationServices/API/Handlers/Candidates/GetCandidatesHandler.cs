@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using ProgramSAP.ApplicationServices.API.Domain;
+using ProgramSAP.ApplicationServices.API.Domain.Candidate;
+using ProgramSAP.ApplicationServices.API.Domain.Candidate.GetAll;
 using ProgramSAP.DataAccess.CQRS;
 using ProgramSAP.DataAccess.CQRS.Queries;
 
@@ -20,7 +21,7 @@ public class GetCandidatesHandler : IRequestHandler<GetCandidatesRequest, GetCan
     {
         var query = new GetCandidatesQuery();
         var candidates = await queryExecutor.Execute(query);
-        var mappedCandidates = mapper.Map<List<Domain.Models.Candidate>>(candidates);
+        var mappedCandidates = mapper.Map<List<Candidate>>(candidates);
 
         var response = new GetCandidatesResponse()
         {

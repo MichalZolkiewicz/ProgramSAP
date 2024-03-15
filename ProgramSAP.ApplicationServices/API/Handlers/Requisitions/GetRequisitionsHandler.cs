@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using ProgramSAP.ApplicationServices.API.Domain;
 using ProgramSAP.DataAccess.Repositories;
 using ProgramSAP.DataAccess.Entities;
+using ProgramSAP.ApplicationServices.API.Domain.Requisition.GetAll;
 
 namespace ProgramSAP.ApplicationServices.API.Handlers.Requisitions;
 
@@ -16,7 +16,7 @@ public class GetRequisitionsHandler : IRequestHandler<GetRequisitionsRequest, Ge
     public async Task<GetRequisitionsResponse> Handle(GetRequisitionsRequest request, CancellationToken cancellationToken)
     {
         var requisitions = await requisitionRepository.GetAll();
-        var domainRequisitions = requisitions.Select(x => new Domain.Models.Requisition()
+        var domainRequisitions = requisitions.Select(x => new Domain.Requisition.Requisition()
         {
             Id = x.Id,
             Title = x.Title
