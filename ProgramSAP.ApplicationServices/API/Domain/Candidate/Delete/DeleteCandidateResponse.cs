@@ -1,5 +1,5 @@
 ﻿namespace ProgramSAP.ApplicationServices.API.Domain.Candidate.Delete;
 
-internal class DeleteCandidateResponse : ResponseBase<Candidate>
+public class DeleteCandidateResponse : ResponseBase<Candidate>
 {
 }
