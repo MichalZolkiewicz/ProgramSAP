@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using ProgramSAP.ApplicationServices.API.Domain.Candidate;
 using ProgramSAP.ApplicationServices.API.Domain.Candidate.Add;
 using ProgramSAP.DataAccess.CQRS;
 using ProgramSAP.DataAccess.CQRS.Commands;
@@ -23,7 +24,7 @@ public class AddCandidateHandler : IRequestHandler<AddCandidateRequest, AddCandi
         var candidateFromDb = await this.commandExecutor.Execute(command);
         return new AddCandidateRespone()
         {
-            Data = this.mapper.Map<Domain.Candidate.Candidate>(candidateFromDb)
+            Data = this.mapper.Map<Candidate>(candidateFromDb)
         };
     }
 }
