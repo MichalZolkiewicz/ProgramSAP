@@ -1,6 +1,8 @@
-﻿namespace ProgramSAP.ApplicationServices.API.Domain;
+﻿using ProgramSAP.ApplicationServices.API.Domain.Error;
 
-public class ResponseBase<T>
+namespace ProgramSAP.ApplicationServices.API.Domain;
+
+public class ResponseBase<T> : ErrorResponseBase
 {
     public T Data { get; set; }
 }

@@ -5,16 +5,27 @@ using ProgramSAP.DataAccess.Repositories;
 using ProgramSAP.ApplicationServices.API.Domain;
 using ProgramSAP.ApplicationServices.API.Mappings;
 using ProgramSAP.DataAccess.CQRS;
+using FluentValidation.AspNetCore;
+using ProgramSAP.ApplicationServices.API.Validators;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddMvcCore().
+    AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddCandidateRequestValidator>());
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddControllers();
 builder.Services.AddMediatR(typeof(ResponseBase<>));
 builder.Services.AddAutoMapper(typeof(CandidatesProfile).Assembly);
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

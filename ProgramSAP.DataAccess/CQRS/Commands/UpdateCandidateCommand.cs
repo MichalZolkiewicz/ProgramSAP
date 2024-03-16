@@ -14,6 +14,10 @@ public class UpdateCandidateCommand : CommandBase<Candidate, Candidate>
             candidate.Surname = this.Parameter.Surname;
             candidate.Email = this.Parameter.Email;
         }
+        else
+        {
+            return default;
+        }
         await context.SaveChangesAsync();
         return this.Parameter;
     }
