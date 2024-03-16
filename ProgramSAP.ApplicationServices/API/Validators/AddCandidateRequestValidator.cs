@@ -7,9 +7,10 @@ public class AddCandidateRequestValidator : AbstractValidator<AddCandidateReques
 {
     public AddCandidateRequestValidator()
     {
-        this.RuleFor(x => x.Name).MaximumLength(250).NotNull().NotEmpty();
-        this.RuleFor(x => x.Surname).MaximumLength(250).NotNull().NotEmpty();
-        this.RuleFor(x => x.Email).NotNull().NotEmpty();
+        this.RuleFor(x => x.Name).MaximumLength(250).NotNull().NotEmpty().NotEqual("string");
+        this.RuleFor(x => x.Surname).MaximumLength(250).NotNull().NotEmpty().NotEqual("string");
+        this.RuleFor(x => x.Email).NotNull().NotEmpty().NotEqual("string");
+        this.RuleFor(x => x.Password).NotNull().NotEmpty().MaximumLength(100).NotEqual("string");
     }
 }
 

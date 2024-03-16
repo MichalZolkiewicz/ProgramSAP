@@ -13,7 +13,8 @@ public class CandidatesProfile : Profile
         this.CreateMap<AddCandidateRequest, DataAccess.Entities.Candidate>()
             .ForMember(x => x.Name, y => y.MapFrom(z => z.Name))
             .ForMember(x => x.Surname, y => y.MapFrom(z => z.Surname))
-            .ForMember(x => x.Email, y => y.MapFrom(z => z.Email));
+            .ForMember(x => x.Email, y => y.MapFrom(z => z.Email))
+            .ForMember(x => x.Password, y => y.MapFrom(z => z.Password));
 
         this.CreateMap<DataAccess.Entities.Candidate, Candidate>()
             .ForMember(x => x.Id, y => y.MapFrom(z => z.Id))
