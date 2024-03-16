@@ -21,7 +21,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 builder.Services.AddControllers();
-builder.Services.AddMediatR(typeof(ResponseBase<>));
+builder.Services.AddMediatR(typeof(ResponseBase<>).Assembly);
 builder.Services.AddAutoMapper(typeof(CandidatesProfile).Assembly);
 builder.Services.AddTransient<IQueryExecutor, QueryExecutor>();
 builder.Services.AddTransient<ICommandExecutor, CommandExecutor>();
