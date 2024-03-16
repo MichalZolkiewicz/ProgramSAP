@@ -4,7 +4,7 @@ using ProgramSAP.ApplicationServices.API.Domain.Candidate;
 using ProgramSAP.ApplicationServices.API.Domain.Candidate.Add;
 using ProgramSAP.DataAccess.CQRS;
 using ProgramSAP.DataAccess.CQRS.Commands;
-
+using ProgramSAP.Authentication;
 namespace ProgramSAP.ApplicationServices.API.Handlers.Candidates;
 
 public class AddCandidateHandler : IRequestHandler<AddCandidateRequest, AddCandidateRespone>
@@ -19,6 +19,7 @@ public class AddCandidateHandler : IRequestHandler<AddCandidateRequest, AddCandi
     }
     public async Task<AddCandidateRespone> Handle(AddCandidateRequest request, CancellationToken cancellationToken)
     {
+        request.Password = HashPasswordHandler.HashPassowrd(request.Password);
         var candidate = this.mapper.Map<DataAccess.Entities.Candidate>(request);
         var command = new AddCandidateCommand() { Parameter = candidate };
         var candidateFromDb = await this.commandExecutor.Execute(command);
