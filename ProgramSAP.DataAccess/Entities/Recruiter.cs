@@ -12,7 +12,7 @@ public class Recruiter : EntityBase
     [MaxLength(250)]
     public string Surname { get; set; }
 
-    public int SeniorityLevel { get; set; }
+    public int? SeniorityLevel { get; set; }
 
     public List<Requisition> Requisitions { get; set; }
 }

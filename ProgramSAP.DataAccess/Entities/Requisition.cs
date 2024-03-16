@@ -4,17 +4,19 @@ namespace ProgramSAP.DataAccess.Entities;
 
 public class Requisition : EntityBase
 {
+    [Required]
     public int RecruiterId { get; set; } 
 
     public Recruiter Recruiter { get; set; }
 
+    [Required]
     public int ManagerId { get; set; }
 
     public Manager Manager { get; set; }
 
     public int CandidateId { get; set; }
 
-    public Candidate Candidate { get; set; }
+    public Candidate? Candidate { get; set; }
     
     [Required]
     [MaxLength(250)]
@@ -22,6 +24,6 @@ public class Requisition : EntityBase
 
     public int JobLevel { get; set; }
 
-    public List<Sourcer> Sourcers { get; set; }
+    public List<Sourcer>? Sourcers { get; set; }
 
 }

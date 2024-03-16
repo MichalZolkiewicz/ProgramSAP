@@ -11,10 +11,10 @@ public class Sourcer : EntityBase
     [Required]
     [MaxLength(250)]
     public string Surname { get; set; }
-    public int SeniorityLevel { get; set; }
+    public int? SeniorityLevel { get; set; }
 
     [MaxLength(250)]
-    public string AreaOfExpertise { get; set; }
+    public string? AreaOfExpertise { get; set; }
 
     public List<Requisition> Requisition { get; set; }
 }

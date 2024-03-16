@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProgramSAP.DataAccess;
 
@@ -11,9 +12,11 @@ using ProgramSAP.DataAccess;
 namespace ProgramSAP.DataAccess.Migrations
 {
     [DbContext(typeof(RecruitingProgramContext))]
-    partial class RecruitingProgramContextModelSnapshot : ModelSnapshot
+    [Migration("20240316115900_RequisitionAndRecruiterChange")]
+    partial class RequisitionAndRecruiterChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,6 +152,7 @@ namespace ProgramSAP.DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AreaOfExpertise")
+                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -157,7 +161,7 @@ namespace ProgramSAP.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("SeniorityLevel")
+                    b.Property<int>("SeniorityLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("Surname")
