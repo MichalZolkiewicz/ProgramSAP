@@ -26,6 +26,7 @@ public abstract class ApiControllerBase : ControllerBase
                 .Where(x => x.Value.Errors.Any())
                 .Select(x => new { property = x.Key, errors = x.Value.Errors }));
         }
+     
         var response = await this.mediator.Send(request);
         if(response.Error != null)
         {
