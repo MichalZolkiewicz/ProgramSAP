@@ -8,6 +8,8 @@ using ProgramSAP.DataAccess.CQRS;
 using FluentValidation.AspNetCore;
 using ProgramSAP.ApplicationServices.API.Validators;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using ProgramSAP.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,8 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
 builder.Services.AddControllers();
 builder.Services.AddMediatR(typeof(ResponseBase<>).Assembly);
