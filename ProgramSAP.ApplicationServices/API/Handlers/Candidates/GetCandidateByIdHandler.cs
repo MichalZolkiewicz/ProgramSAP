@@ -2,6 +2,8 @@
 using MediatR;
 using ProgramSAP.ApplicationServices.API.Domain.Candidate;
 using ProgramSAP.ApplicationServices.API.Domain.Candidate.GetById;
+using ProgramSAP.ApplicationServices.API.Domain.Error;
+using ProgramSAP.ApplicationServices.API.Domain.ErrorHandling;
 using ProgramSAP.DataAccess.CQRS;
 using ProgramSAP.DataAccess.CQRS.Queries;
 
@@ -25,8 +27,14 @@ public class GetCandidateByIdHandler : IRequestHandler<GetCandidateByIdRequest, 
             Id = request.CandidateId
         };
         var candidate = await queryExecutor.Execute(query);
+        if(candidate == null)
+        {
+            return new GetCandidateByIdResponse()
+            {
+                Error = new ErrorModel(ErrorType.NotFound)
+            };
+        }
         var mappedCandidate = mapper.Map<Candidate>(candidate);
-
         var response = new GetCandidateByIdResponse()
         {
             Data = mappedCandidate
